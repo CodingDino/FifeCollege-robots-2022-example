@@ -1,6 +1,8 @@
 #include "Robot.h"
 #include <iostream>
 #include "Dog.h"
+#include "Bird.h"
+#include "Fish.h"
 
 Robot::Robot()
     : Machine()
@@ -9,7 +11,9 @@ Robot::Robot()
     , weight(0)
     , price(0)
     , colourResponse()
-    , pet(nullptr)
+    , dogPet(nullptr)
+    , fishPet(nullptr)
+    , birdPet(nullptr)
 {
     std::cout << "Robot " << serialNumber << " constructed!" << std::endl;
 }
@@ -21,17 +25,19 @@ Robot::Robot(std::string newName, std::string newEyeColour, float newWeight, flo
     , weight(newWeight)
     , price(newPrice)
     , colourResponse()
-    , pet(newRoboDog)
+    , dogPet(newRoboDog)
+    , fishPet(nullptr)
+    , birdPet(nullptr)
 {
     std::cout << "Robot " << name << "-" << serialNumber << " constructed using parameters!" << std::endl;
 }
 
 Robot::~Robot()
 {
-    if (pet != nullptr)
+    if (dogPet != nullptr)
     {
         //delete pet;
-        pet = nullptr;
+        dogPet = nullptr;
     }
 
     std::cout << "Robot " << name << "-" << serialNumber << " destroyed." << std::endl;
@@ -47,10 +53,25 @@ void Robot::IntroduceSelf()
 
     std::cout << "MY MEMORY ADDRESS IS " << this << std::endl;
 
-    // If the pet exists
-    if (pet != nullptr)
+    IntroducePet();
+}
+
+void Robot::IntroducePet()
+{
+    if (dogPet != nullptr)
     {
-        std::cout << "OH, I ALSO HAVE A DOG NAMED " << pet->GetName() << std::endl;
+        std::cout << "I HAVE A DOG NAMED " << dogPet->GetName() << std::endl;
+        dogPet->Speak();
+    }
+    if (birdPet != nullptr)
+    {
+        std::cout << "I HAVE A BIRD NAMED " << birdPet->GetName() << std::endl;
+        birdPet->Speak();
+    }
+    if (fishPet != nullptr)
+    {
+        std::cout << "I HAVE A FISH NAMED " << fishPet->GetName() << std::endl;
+        fishPet->Speak();
     }
 }
 
@@ -66,9 +87,19 @@ std::string Robot::GetColourResponseFor(std::string colour)
 
 void Robot::SetPet(Dog* newPet)
 {
-    pet = newPet;
+    dogPet = newPet;
 
-    pet->SetMaster(this);
+    dogPet->SetMaster(this);
+}
+
+void Robot::SetPet(Fish* newPet)
+{
+    fishPet = newPet;
+}
+
+void Robot::SetPet(Bird* newPet)
+{
+    birdPet = newPet;
 }
 
 void Robot::RespondToName(std::string& playerName)
@@ -93,7 +124,7 @@ void Robot::RespondToName(std::string& playerName)
 void Robot::CreateDog(std::string dogName)
 {
     // If there is already a pet
-    if (pet != nullptr)
+    if (dogPet != nullptr)
     {
         // do nothing, pet already exists
         return;
@@ -101,5 +132,5 @@ void Robot::CreateDog(std::string dogName)
 
     // We know there is no pet
     // Create one!
-    pet = new Dog(); // TODO: Name!
+    dogPet = new Dog(); // TODO: Name!
 }

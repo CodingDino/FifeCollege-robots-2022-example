@@ -10,7 +10,8 @@
 // - You must not dereference the class you're trying to use in this file
 
 class Dog;
-
+class Fish;
+class Bird;
 
 class Robot : public Machine
 {
@@ -22,10 +23,13 @@ public:
 	~Robot();
 
 	void IntroduceSelf();
+	void IntroducePet();
 	void AddColourResponse(std::string colour, std::string response);
 	std::string GetColourResponseFor(std::string colour);
 
 	void SetPet(Dog* newPet);
+	void SetPet(Fish* newPet);
+	void SetPet(Bird* newPet);
 
 	void RespondToName(std::string& playerName);
 
@@ -38,7 +42,9 @@ private:
 	float weight;
 	float price;
 	std::map<std::string, std::string> colourResponse;
-	Dog* pet;
+	Dog* dogPet;
+	Fish* fishPet;
+	Bird* birdPet;
 
 	//Robot* this; // Automatically equal to the address of THIS instance
 };

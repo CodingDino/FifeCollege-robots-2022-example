@@ -24,12 +24,16 @@ int main()
     std::cout << std::endl;
     Robot myRobot("Bob", "Blue", 100, 100, &myDog);
 
+    myRobot.SetPet(&myBird);
+
     std::cout << std::endl;
     std::cout << std::endl;
 
-    myDog.Speak();
-    myFish.Speak();
-    myBird.Speak();
+    myRobot.IntroduceSelf();
+
+    //myDog.Speak();
+    //myFish.Speak();
+    //myBird.Speak();
 
     std::cout << std::endl;
     std::cout << std::endl;
