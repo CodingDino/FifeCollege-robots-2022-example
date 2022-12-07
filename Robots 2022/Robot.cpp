@@ -1,8 +1,9 @@
 #include "Robot.h"
 #include <iostream>
+#include "Pet.h"
 #include "Dog.h"
-#include "Bird.h"
 #include "Fish.h"
+#include "Bird.h"
 
 Robot::Robot()
     : Machine()
@@ -11,35 +12,25 @@ Robot::Robot()
     , weight(0)
     , price(0)
     , colourResponse()
-    , dogPet(nullptr)
-    , fishPet(nullptr)
-    , birdPet(nullptr)
+    , robotPet(nullptr)
 {
     std::cout << "Robot " << serialNumber << " constructed!" << std::endl;
 }
 
-Robot::Robot(std::string newName, std::string newEyeColour, float newWeight, float newPrice, Dog* newRoboDog)
+Robot::Robot(std::string newName, std::string newEyeColour, float newWeight, float newPrice, Pet* newPet)
     : Machine()
     , name(newName)
     , eyeColour(newEyeColour)
     , weight(newWeight)
     , price(newPrice)
     , colourResponse()
-    , dogPet(newRoboDog)
-    , fishPet(nullptr)
-    , birdPet(nullptr)
+    , robotPet(newPet)
 {
     std::cout << "Robot " << name << "-" << serialNumber << " constructed using parameters!" << std::endl;
 }
 
 Robot::~Robot()
 {
-    if (dogPet != nullptr)
-    {
-        //delete pet;
-        dogPet = nullptr;
-    }
-
     std::cout << "Robot " << name << "-" << serialNumber << " destroyed." << std::endl;
 }
 
@@ -58,6 +49,18 @@ void Robot::IntroduceSelf()
 
 void Robot::IntroducePet()
 {
+    /*
+    if (robotPet != nullptr)
+    {
+        std::cout << "I HAVE A PET NAMED " << robotPet->GetName() << std::endl;
+        robotPet->Speak();
+    }
+    */
+
+    Dog* dogPet = dynamic_cast<Dog*>(robotPet);
+    Fish* fishPet = dynamic_cast<Fish*>(robotPet);
+    Bird* birdPet = dynamic_cast<Bird*>(robotPet);
+
     if (dogPet != nullptr)
     {
         std::cout << "I HAVE A DOG NAMED " << dogPet->GetName() << std::endl;
@@ -73,6 +76,7 @@ void Robot::IntroducePet()
         std::cout << "I HAVE A FISH NAMED " << fishPet->GetName() << std::endl;
         fishPet->Speak();
     }
+
 }
 
 void Robot::AddColourResponse(std::string colour, std::string response)
@@ -85,21 +89,15 @@ std::string Robot::GetColourResponseFor(std::string colour)
     return colourResponse[colour];
 }
 
-void Robot::SetPet(Dog* newPet)
+void Robot::SetPet(Pet* newPet)
 {
-    dogPet = newPet;
+    robotPet = newPet;
 
-    dogPet->SetMaster(this);
-}
-
-void Robot::SetPet(Fish* newPet)
-{
-    fishPet = newPet;
-}
-
-void Robot::SetPet(Bird* newPet)
-{
-    birdPet = newPet;
+    Dog* dogPet = dynamic_cast<Dog*>(robotPet);
+    if (dogPet != nullptr)
+    {
+        dogPet->SetMaster(this);
+    }
 }
 
 void Robot::RespondToName(std::string& playerName)
@@ -124,7 +122,7 @@ void Robot::RespondToName(std::string& playerName)
 void Robot::CreateDog(std::string dogName)
 {
     // If there is already a pet
-    if (dogPet != nullptr)
+    if (robotPet != nullptr)
     {
         // do nothing, pet already exists
         return;
@@ -132,5 +130,5 @@ void Robot::CreateDog(std::string dogName)
 
     // We know there is no pet
     // Create one!
-    dogPet = new Dog(); // TODO: Name!
+    robotPet = new Dog(); // TODO: Name!
 }

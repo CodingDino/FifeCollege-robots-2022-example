@@ -9,16 +9,14 @@
 // - The class you are using must only exist as a pointer in this file
 // - You must not dereference the class you're trying to use in this file
 
-class Dog;
-class Fish;
-class Bird;
+class Pet;
 
 class Robot : public Machine
 {
 public:
 
 	Robot();
-	Robot(std::string newName, std::string newEyeColour, float newWeight, float newPrice, Dog* newRoboDog);
+	Robot(std::string newName, std::string newEyeColour, float newWeight, float newPrice, Pet* newPet);
 
 	~Robot();
 
@@ -27,9 +25,7 @@ public:
 	void AddColourResponse(std::string colour, std::string response);
 	std::string GetColourResponseFor(std::string colour);
 
-	void SetPet(Dog* newPet);
-	void SetPet(Fish* newPet);
-	void SetPet(Bird* newPet);
+	void SetPet(Pet* newPet);
 
 	void RespondToName(std::string& playerName);
 
@@ -42,9 +38,7 @@ private:
 	float weight;
 	float price;
 	std::map<std::string, std::string> colourResponse;
-	Dog* dogPet;
-	Fish* fishPet;
-	Bird* birdPet;
+	Pet* robotPet;
 
 	//Robot* this; // Automatically equal to the address of THIS instance
 };

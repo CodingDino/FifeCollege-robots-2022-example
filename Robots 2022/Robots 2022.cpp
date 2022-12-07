@@ -24,7 +24,7 @@ int main()
     std::cout << std::endl;
     Robot myRobot("Bob", "Blue", 100, 100, &myDog);
 
-    myRobot.SetPet(&myBird);
+    myRobot.SetPet(&myDog);
 
     std::cout << std::endl;
     std::cout << std::endl;

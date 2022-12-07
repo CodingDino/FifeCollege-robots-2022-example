@@ -12,7 +12,7 @@ public:
 	// Constructors/Destructors
 	Pet();
 	Pet(std::string newName);
-	~Pet();
+	virtual ~Pet();
 
 	// Public Functions
 	void Speak();
