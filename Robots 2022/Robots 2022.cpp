@@ -9,6 +9,7 @@
 #include "Dog.h"
 #include "Fish.h"
 #include "Bird.h"
+#include "Pet.h"
 #include "Chatroom.h"
 
 
@@ -16,6 +17,8 @@
 
 int main()
 {
+    Pet myPet;
+
     Dog myDog("Fido", nullptr);
     std::cout << std::endl;
     Fish myFish;
@@ -24,7 +27,7 @@ int main()
     std::cout << std::endl;
     Robot myRobot("Bob", "Blue", 100, 100, &myDog);
 
-    myRobot.SetPet(&myDog);
+    myRobot.SetPet(&myBird);
 
     std::cout << std::endl;
     std::cout << std::endl;

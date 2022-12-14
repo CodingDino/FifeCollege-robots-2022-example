@@ -49,14 +49,12 @@ void Robot::IntroduceSelf()
 
 void Robot::IntroducePet()
 {
-    /*
     if (robotPet != nullptr)
     {
         std::cout << "I HAVE A PET NAMED " << robotPet->GetName() << std::endl;
         robotPet->Speak();
     }
-    */
-
+    /*
     Dog* dogPet = dynamic_cast<Dog*>(robotPet);
     Fish* fishPet = dynamic_cast<Fish*>(robotPet);
     Bird* birdPet = dynamic_cast<Bird*>(robotPet);
@@ -76,7 +74,7 @@ void Robot::IntroducePet()
         std::cout << "I HAVE A FISH NAMED " << fishPet->GetName() << std::endl;
         fishPet->Speak();
     }
-
+    */
 }
 
 void Robot::AddColourResponse(std::string colour, std::string response)

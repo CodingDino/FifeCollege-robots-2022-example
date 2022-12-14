@@ -15,7 +15,7 @@ public:
 	virtual ~Pet();
 
 	// Public Functions
-	void Speak();
+	virtual void Speak() = 0; // Pure virtual function, this makes Pet an abstract class
 
 	// Getters
 	std::string GetName();

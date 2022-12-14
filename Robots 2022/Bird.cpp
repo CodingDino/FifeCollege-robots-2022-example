@@ -11,3 +11,8 @@ Bird::~Bird()
 {
 	std::cout << "Bird " << name << " was destroyed!" << std::endl;
 }
+
+void Bird::Speak()
+{ 
+	std::cout << "Tweet tweet!" << std::endl;
+}

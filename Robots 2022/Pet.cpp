@@ -22,11 +22,6 @@ Pet::~Pet()
 	std::cout << "Pet " << name << "-" << serialNumber << " was destroyed!" << std::endl;
 }
 
-void Pet::Speak()
-{
-	std::cout << name << " stares at you silently." << std::endl;
-}
-
 std::string Pet::GetName()
 {
 	return name;

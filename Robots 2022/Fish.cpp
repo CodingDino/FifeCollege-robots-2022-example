@@ -14,6 +14,6 @@ Fish::~Fish()
 
 void Fish::Speak()
 {
-	Pet::Speak();
+	//Pet::Speak();
 	std::cout << "Blub blub" << std::endl;
 }
